@@ -1,0 +1,43 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" id="terminal" baseProfile="full" viewBox="0 0 768 274" width="768" version="1.1">
+    <defs>
+        <termtosvg:template_settings xmlns:termtosvg="https://github.com/nbedos/termtosvg">
+            <termtosvg:screen_geometry columns="96" rows="16"/>
+        </termtosvg:template_settings>
+        <style type="text/css" id="generated-style"><![CDATA[:root {
+            --animation-duration: 8206ms;
+        }
+        
+        #screen {
+                font-family: 'DejaVu Sans Mono', monospace;
+                font-style: normal;
+                font-size: 14px;
+            }
+
+        text {
+            dominant-baseline: text-before-edge;
+        }]]></style>
+        <style type="text/css" id="user-style">
+            /* dracula color theme */
+            .foreground {fill: #e9e9f4;}
+            .background {fill: #282936;}
+            .color0 {fill: #282936;}
+            .color1 {fill: #ea51b2;}
+            .color2 {fill: #ebff87;}
+            .color3 {fill: #00f769;}
+            .color4 {fill: #62d6e8;}
+            .color5 {fill: #b45bcf;}
+            .color6 {fill: #a1efe4;}
+            .color7 {fill: #e9e9f4;}
+            .color8 {fill: #626483;}
+            .color9 {fill: #b45bcf;}
+            .color10 {fill: #3a3c4e;}
+            .color11 {fill: #4d4f68;}
+            .color12 {fill: #62d6e8;}
+            .color13 {fill: #f1f2f8;}
+            .color14 {fill: #00f769;}
+            .color15 {fill: #f7f7fb;}
+        </style>
+    </defs>
+    <svg id="screen" width="768" viewBox="0 0 768 272" preserveAspectRatio="xMidYMin meet">
+        <defs><g id="g1"><text class="foreground" lengthAdjust="spacingAndGlyphs" textLength="352" x="0">kirin@kawagarbo:~/workspace/repo/reveal.js$&#160;</text><text class="background" lengthAdjust="spacingAndGlyphs" textLength="8" x="352">&#160;</text></g><g id="g2"><text class="foreground" lengthAdjust="spacingAndGlyphs" textLength="360" x="0">kirin@kawagarbo:~/workspace/repo/reveal.js$&#160;e</text><text class="background" lengthAdjust="spacingAndGlyphs" textLength="8" x="360">&#160;</text></g><g id="g3"><text class="foreground" lengthAdjust="spacingAndGlyphs" textLength="368" x="0">kirin@kawagarbo:~/workspace/repo/reveal.js$&#160;ex</text><text class="background" lengthAdjust="spacingAndGlyphs" textLength="8" x="368">&#160;</text></g><g id="g4"><text class="foreground" lengthAdjust="spacingAndGlyphs" textLength="376" x="0">kirin@kawagarbo:~/workspace/repo/reveal.js$&#160;exi</text><text class="background" lengthAdjust="spacingAndGlyphs" textLength="8" x="376">&#160;</text></g><g id="g5"><text class="foreground" lengthAdjust="spacingAndGlyphs" textLength="384" x="0">kirin@kawagarbo:~/workspace/repo/reveal.js$&#160;exit</text><text class="background" lengthAdjust="spacingAndGlyphs" textLength="8" x="384">&#160;</text></g><g id="g6"><text class="foreground" lengthAdjust="spacingAndGlyphs" textLength="384" x="0">kirin@kawagarbo:~/workspace/repo/reveal.js$&#160;exit</text></g><g id="g7"><text class="foreground" lengthAdjust="spacingAndGlyphs" textLength="32" x="0">exit</text></g><g id="g8"><text class="background" lengthAdjust="spacingAndGlyphs" textLength="8" x="0">&#160;</text></g></defs><rect class="background" height="100%" width="100%" x="0" y="0"/><g display="none"><rect class="foreground" height="17" width="8" x="352" y="0"/><use y="0" xlink:href="#g1"/><animate attributeName="display" begin="0ms; anim_last.end" dur="6418ms" from="inline" to="inline"/></g><g display="none"><rect class="foreground" height="17" width="8" x="360" y="0"/><use y="0" xlink:href="#g2"/><animate attributeName="display" begin="6418ms; anim_last.end+6418ms" dur="203ms" from="inline" to="inline"/></g><g display="none"><rect class="foreground" height="17" width="8" x="368" y="0"/><use y="0" xlink:href="#g3"/><animate attributeName="display" begin="6621ms; anim_last.end+6621ms" dur="154ms" from="inline" to="inline"/></g><g display="none"><rect class="foreground" height="17" width="8" x="376" y="0"/><use y="0" xlink:href="#g4"/><animate attributeName="display" begin="6775ms; anim_last.end+6775ms" dur="111ms" from="inline" to="inline"/></g><g display="none"><rect class="foreground" height="17" width="8" x="384" y="0"/><use y="0" xlink:href="#g5"/><animate attributeName="display" begin="6886ms; anim_last.end+6886ms" dur="320ms" from="inline" to="inline"/></g><g display="none"><use y="0" xlink:href="#g6"/><use y="17" xlink:href="#g7"/><rect class="foreground" height="17" width="8" x="0" y="34"/><use y="34" xlink:href="#g8"/><animate attributeName="display" begin="7206ms; anim_last.end+7206ms" dur="1000ms" from="inline" to="inline" id="anim_last"/></g></svg>
+</svg>
