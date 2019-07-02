@@ -1,14 +1,12 @@
 
-## Pexpect 
-
+### Pexpect 
 * is a Pure Python Expect-like module
 * is a Python module for spawning child applications and controlling them automatically. 
 * is used for automating interactive applications such as ssh, ftp, passwd, telnet, etc.
 
 ---
 
-## install Pexpect using pip
-
+### install via pip
 ```shell
 $ pip install pexpect
 ```
@@ -21,7 +19,7 @@ Note:
 This will only display in the notes window.
 
 ---
-## API Overview
+### API Overview
 
 * spawn class
 ```python
@@ -32,13 +30,13 @@ class pexpect.spawn(command, args=[],
         echo=True, preexec_fn=None, 
         encoding=None, codec_errors='strict', 
         dimensions=None, use_poll=False)
-
+```
+```python
 expect(pattern, timeout=-1, searchwindowsize=-1, async_=False, **kw)
-
 ```
 
 ---
-## API Overview
+### API Overview
 
 * run function
 ```python
@@ -50,103 +48,38 @@ pexpect.run(command, timeout=30,
 
 
 ---
-
-## API Overview
-```python
-#! /usr/bin/python3
-
-import pexpect
-
-def main():
-    child = pexpect.spawn("sh")
-    child.expect("#")
-    print(child.before)
-    print(child.after)
-
-    child.sendline("pwd")
-    child.expect("#")
-    print(child.before)
-    print(child.after)
-    child.close()
-
-if __name__ == "__main__":
-    main()
-```
-+++
-## API Overview
-```
-root@aliyunHost:~/workspace/test# ./pe_test.py
-b' pwd\r\n/root/workspace/test\r\n'
-b'#'
-root@aliyunHost:~/workspace/test#
-
-```
-+++
-## API Overview
-
-```sh
-root@aliyunHost:~/workspace/test# sh
-# pwd
-/root/workspace/test
-# exit
-root@aliyunHost:~/workspace/test#
-
-```
-
-
----
-##  
-```bash
-root@aliyunHost:~/workspace/test# ssh demo@test.rebex.net
-Password:
-Welcome to Rebex Virtual Shell!
-For a list of supported commands, type 'help'.
-demo@ETNA:/$
-demo@ETNA:/$ ls
-aspnet_client
-pub
-readme.txt
-demo@ETNA:/$
-demo@ETNA:/$ pwd
-/
-demo@ETNA:/$
-demo@ETNA:/$ exit
-Disconnecting...
-Connection to test.rebex.net closed.
-root@aliyunHost:~/workspace/test#
-
-```
-
----
-
+### API Overview
 ```python
 #! /usr/bin/python3
 
 import pexpect as pe
+import sys
+import time
 
 def main():
-    child = pe.spawn("ssh demo@test.rebex.net", timeout=30)
-    result = child.expect([pe.EOF, pe.TIMEOUT, "Password"], 30)
-    if result == 2:
-        print("enter password ...")
-        child.sendline("password")
-        p0 = child.expect([pe.EOF, pe.TIMEOUT, "demo.*$"], 30)
-        if p0 == 2:
+    child = pe.spawn("ssh nj", timeout=30, encoding='utf-8')
+    child.logfile_read = sys.stdout
+    prompt = "root@NewJersey.*#"
+    result = child.expect([prompt, pe.EOF, pe.TIMEOUT], 10)
+    if result == 0:
+        time.sleep(3)
+        child.sendline("uname")
+        p0 = child.expect([prompt, pe.EOF, pe.TIMEOUT], 3)
+
+        if p0 == 0:
             print("Login successful ...")
+
+            time.sleep(3)
             child.sendline("pwd")
-            p1 = child.expect([pe.EOF, pe.TIMEOUT, "demo"], 30)
-            print("pwd " + str(p1) + "...")
-            print(child.before)
-            print(child.after)
+            p1 = child.expect([prompt, pe.EOF, pe.TIMEOUT], 3)
+
+            time.sleep(3)
             child.sendline("ls")
-            p2 = child.expect([pe.EOF, pe.TIMEOUT, "demo"], 30)
-            print("ls  " + str(p2) + "...")
-            print(child.before)
-            print(child.after)
+            p2 = child.expect([prompt, pe.EOF, pe.TIMEOUT], 3)
         else:
-            print("Login failed" + str(prompt))
+            print("Login failed" + str(p0))
     else:
-        print("ssh connect failed")
+        print("ssh connect failed[{0}]".format(result))
 
     child.close()
     print("Bye bye")
@@ -155,3 +88,61 @@ if __name__ == "__main__":
     main()
 
 ```
+Note:
+Beware of + and * at the end of patterns will always get a minimal match (non greedy). 
+
+---
+### API Overview
+```bash
+root@aliyunHost:~/workspace/test# ./pe_ssh.py
+Welcome to Ubuntu 16.04.6 LTS (GNU/Linux 4.15.0-29-generic x86_64)
+
+ * Documentation:  https://help.ubuntu.com
+ * Management:     https://landscape.canonical.com
+ * Support:        https://ubuntu.com/advantage
+
+9 packages can be updated.
+0 updates are security updates.
+
+New release '18.04.2 LTS' available.
+Run 'do-release-upgrade' to upgrade to it.
+
+
+Last login: Tue Jul  2 13:34:02 2019 from 106.15.185.130
+root@NewJersey:~# uname
+Linux
+root@NewJersey:~# Login successful ...
+pwd
+/root
+root@NewJersey:~# ls
+ca  shadowsocks-liber.config.json  streisand_ss.cap  todo.md  workspace
+root@NewJersey:~# Bye bye
+root@aliyunHost:~/workspace/test#
+
+```
+
+---
+### API Overview
+![ssh to nj](./images/pexpect_ssh_nj.svg)
+
+
+
+---
+* child.before: all data before the match
+* child.after: the data that was matched
+* child.match: the re.MatchObject used in the re match
+* timeout is the time allowed for the spawning.
+* maxread is the size of the buffer, the default is 2000.
+
+Note:
+If the spawned process is called child,
+then to look for the end of the line:
+child.expect(’\r\n’)
+Why so? Each line in TTY devices ends with a CR/LF combination.
+
+---
+Reference:
+* [Pexpect Documentation](https://pexpect.readthedocs.io/en/stable/index.html)
+* [Python Regular expression operations](https://docs.python.org/3/library/re.html)
+* [PEP 8 -- Style Guide for Python Code](https://www.python.org/dev/peps/pep-0008/)
+* [pip documentation](https://pip.pypa.io/en/stable/user_guide/)
