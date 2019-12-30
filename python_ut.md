@@ -187,3 +187,21 @@ Ran 2 tests in 0.000s
 
 OK
 ```
+
+|||
+
+Mock & MagicMock & Patch
+
+* Mock is a flexible mock object intended to replace the use of stubs and test doubles throughout your code. 
+* MagicMock is a subclass of Mock with all the magic methods pre-created and ready to use. 
+* The patch() decorators makes it easy to temporarily replace classes in a particular module with a Mock object.
+
++++
+
+A MagicMock instance can:
+
+    capture the arguments that the method is called with
+    count how many times it’s called
+    return values that we specify
+    return the same or different values each time the mocked method is called
+    be made to raise errors
